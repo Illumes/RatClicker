@@ -1,11 +1,11 @@
 import pyautogui
-import time
 import win32api
-import math
 import random
 import win32gui
 import win32process
 import psutil
+import keyboard
+import time
 
 
 def get_pid(name: str):
@@ -16,20 +16,55 @@ def is_focus(pid: int):
 
 pid = get_pid("javaw.exe")
 Held = False
-# Enabled = True
 
-# while Enabled == True:
-#     if win32api.GetKeyState(0x01) < 0:
-#         print("Clicking")
-#         pyautogui.click()
 y = "Clicking"
 n = "Not Clicking"
-while True:
-    if is_focus(pid):
-        if win32api.GetKeyState(0x01) < 0:
-            pyautogui.click(clicks=random.randint(1,2))
-            pyautogui.mouseDown()
-            print(y)
-        else:
-            print(n)
-        
+Choice = input("What type of clicks do you want(Double, Jitter, Butterfly)")
+print("Started!")
+
+if Choice.lower() == "butterfly":
+    while True: #Butterfly!
+        if is_focus(pid):
+            if win32api.GetKeyState(0x01) < 0:
+                pyautogui.click(clicks=random.randint(1,2))
+                pyautogui.mouseDown()
+                print(y)
+            else:
+                print(n)
+elif Choice.lower() == "jitter":
+    while True: #Jitter! (Buggy)
+        if is_focus(pid):
+            if win32api.GetKeyState(0x01) < 0:
+                pyautogui.click(clicks=random.randint(0,1))
+                pyautogui.mouseDown()
+                print(y)
+            else:
+                print(n)
+elif Choice.lower() == "double":
+    while True: #Double Clicker!
+        if is_focus(pid):
+            if win32api.GetKeyState(0x01) < 0:
+                time.sleep(0.1)
+                pyautogui.click()
+
+
+
+#Scrapped
+# Key = "g"
+# Enabled = False
+
+# while Enabled == True:
+#      if is_focus(pid): 
+#         pyautogui.click(clicks=random.randint(1,2))
+
+# while True: #Butterfly!
+#     if is_focus(pid):
+#         if keyboard.wait(Key):
+#             if Enabled == False:
+#                  Enabled = True
+#                  print(Enabled)
+#             else:
+#                  Enabled = False
+#                  print(Enabled)
+
+
