@@ -27,6 +27,7 @@ if Choice.lower() == "butterfly":
         if is_focus(pid):
             if win32api.GetKeyState(0x01) < 0:
                 pyautogui.click(clicks=random.randint(1,2))
+                time.sleep(0.01)
                 pyautogui.mouseDown()
                 print(y)
             else:
@@ -35,7 +36,8 @@ elif Choice.lower() == "jitter":
     while True: #Jitter! (Buggy)
         if is_focus(pid):
             if win32api.GetKeyState(0x01) < 0:
-                pyautogui.click(clicks=random.randint(0,1))
+                pyautogui.click(clicks=random.randint(1,2))
+                time.sleep(0.05)
                 pyautogui.mouseDown()
                 print(y)
             else:
@@ -46,6 +48,8 @@ elif Choice.lower() == "double":
             if win32api.GetKeyState(0x01) < 0:
                 time.sleep(0.1)
                 pyautogui.click()
+else:
+    print("Not a valid choice")
 
 
 
