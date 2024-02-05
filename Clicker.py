@@ -4,7 +4,9 @@ import random
 import win32gui
 import win32process
 import psutil
+import pyfiglet
 import time
+import os
 
 
 def get_pid(name: str):
@@ -14,34 +16,32 @@ def is_focus(pid: int):
 
 
 pid = get_pid("javaw.exe")
-Held = False
 
 y = "Clicking"
 n = "Not Clicking"
-Choice = input("What type of clicks do you want(Double, Jitter, Butterfly)")
-print("Started!")
+os.system("cls")
+os.system("title RatClicker V1.0 - Made by Illumes")
+choice = input("What type of clicks do you want(Double, Jitter, Butterfly) ")
+os.system("cls")
+print(pyfiglet.figlet_format("RatClicker V1.0", font="Ogre"))
+print(f"Started!\n\nMode: {choice}")
 
-if Choice.lower() == "butterfly":
-    while True: #Butterfly!
+if choice.lower() == "butterfly":
+    print("Butterfly flags on sparky currently")
+    while True: #Butterfly! (Can flag)
         if is_focus(pid):
             if win32api.GetKeyState(0x01) < 0:
                 pyautogui.click(clicks=random.randint(1,2))
+                pyautogui.mouseDown()
                 time.sleep(0.01)
-                pyautogui.mouseDown()
-                print(y)
-            else:
-                print(n)
-elif Choice.lower() == "jitter":
-    while True: #Jitter! (Buggy)
+elif choice.lower() == "jitter":
+    while True: #Jitter!
         if is_focus(pid):
             if win32api.GetKeyState(0x01) < 0:
                 pyautogui.click(clicks=random.randint(1,2))
-                time.sleep(0.05)
                 pyautogui.mouseDown()
-                print(y)
-            else:
-                print(n)
-elif Choice.lower() == "double":
+                time.sleep(0.05)
+elif choice.lower() == "double":
     while True: #Double Clicker!
         if is_focus(pid):
             if win32api.GetKeyState(0x01) < 0:
@@ -49,25 +49,4 @@ elif Choice.lower() == "double":
                 pyautogui.click()
 else:
     print("Not a valid choice")
-
-
-
-#Scrapped
-# Key = "g"
-# Enabled = False
-
-# while Enabled == True:
-#      if is_focus(pid): 
-#         pyautogui.click(clicks=random.randint(1,2))
-
-# while True: #Butterfly!
-#     if is_focus(pid):
-#         if keyboard.wait(Key):
-#             if Enabled == False:
-#                  Enabled = True
-#                  print(Enabled)
-#             else:
-#                  Enabled = False
-#                  print(Enabled)
-
 
