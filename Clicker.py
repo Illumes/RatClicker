@@ -4,7 +4,6 @@ import random
 import win32gui
 import win32process
 import psutil
-import keyboard
 import time
 
 
